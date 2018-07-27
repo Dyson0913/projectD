@@ -24,7 +24,7 @@ public class InfinityGround : MonoBehaviour {
         itemQueue = new Queue<GameObject>();
 		
 		groundMiddenNum = (int) (grounChunkNum /2);
-		Debug.Log(groundMiddenNum);
+		//Debug.Log(groundMiddenNum);
 
 		//地版中間那塊對齊畫面中央
 		var initX = groundMiddenNum * -groundDistance;

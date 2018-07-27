@@ -90,6 +90,7 @@ public class player : MonoBehaviour {
 		horizontalDirection = Input.GetAxis(HORIZONTAL);
 		Xacceleratetion = xForce*horizontalDirection;
 		
+		//TODO 看到signal做法再改
 		hudscript.GetComponent<Hud>().distanceUpdate(this.transform.position.x);
 		//preAppearZone.GetComponent<PreAppearZone>().distanceUpdate(this.transform.position.x);
 		infinityGround.GetComponent<InfinityGround>().distanceUpdate(this.transform.position.x);

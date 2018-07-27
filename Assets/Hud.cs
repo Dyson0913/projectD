@@ -16,11 +16,19 @@ public class Hud : MonoBehaviour {
 	public Text gameSubtitle;
 
 	private string filename = "StartCredit.json";
-	private string[] allRoundData;
+
+	//提示文字
+	private string[] creditText;
+	private int[] displayPo;
+	private int CurrentDisplayPo;
 
 	
 	void Start () {
 		walkdis.text = 0.ToString();
+
+		gameSubtitle.text = "";
+		CurrentDisplayPo = 0;
+
 		loadjson(filename);
 	}
 	
@@ -30,7 +38,18 @@ public class Hud : MonoBehaviour {
 	}
 
 	public void distanceUpdate(float acclerate){
-		walkdis.text = Mathf.Ceil(acclerate).ToString();
+		float curDistance = Mathf.Ceil(acclerate);
+		walkdis.text = curDistance.ToString();
+
+		//檢查是否播下個文字提示
+		if( curDistance > displayPo[CurrentDisplayPo] ){
+			subtilteUpdate();
+			CurrentDisplayPo +=1;
+		}
+	}
+
+	void subtilteUpdate(){
+		gameSubtitle.text = creditText[CurrentDisplayPo];
 	}
 
 	void loadjson(string filename){
@@ -44,9 +63,8 @@ public class Hud : MonoBehaviour {
             GameData loadedData = JsonUtility.FromJson<GameData>(dataAsJson);
 			
             // // Retrieve the allRoundData property of loadedData
-            allRoundData = loadedData.allRoundData;
-			Debug.Log("allRoundData "+allRoundData[1]);
-			gameSubtitle.text = allRoundData[1];
+            creditText = loadedData.creditText;
+			displayPo = loadedData.displayPo;
         }
         else
         {
