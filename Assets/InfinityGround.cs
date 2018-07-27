@@ -17,6 +17,7 @@ public class InfinityGround : MonoBehaviour {
 	public float grounChunkNum;
 
 	private int groundMiddenNum;
+
     // Use this for initialization
     void Start()
     {
@@ -26,12 +27,14 @@ public class InfinityGround : MonoBehaviour {
 		groundMiddenNum = (int) (grounChunkNum /2);
 		//Debug.Log(groundMiddenNum);
 
+        
 		//地版中間那塊對齊畫面中央
 		var initX = groundMiddenNum * -groundDistance;
 		for (int i = 0; i < grounChunkNum;i++ )
         {
 			//var instance = Instantiate(obstaic[0],new Vector2((i*groundDistance),0*1),transform.rotation);			
-			var instance = Instantiate(obstaic[0],new Vector2((i*groundDistance) + initX  ,0*1),transform.rotation);
+			var instance = Instantiate(obstaic[0]);
+            instance.transform.position = new Vector2((i*groundDistance) + initX  ,transform.position.y);
 			instance.transform.parent = worldCenter.transform;
             itemQueue.Enqueue(instance);
         }
@@ -48,6 +51,7 @@ public class InfinityGround : MonoBehaviour {
 
     public void distanceUpdate(float playerX)
     {        
+        
 		//往右
 		//if(referrenceTransform.transform.position.x-itemQueue.Peek().transform.position.x>=groundDistance)
 		if(referrenceTransform.transform.position.x-itemQueue.ToArray()[groundMiddenNum].transform.position.x>=2f)

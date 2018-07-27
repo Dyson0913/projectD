@@ -21,13 +21,14 @@ public class Hud : MonoBehaviour {
 	private string[] creditText;
 	private int[] displayPo;
 	private int CurrentDisplayPo;
-
+	private bool showText;
 	
 	void Start () {
 		walkdis.text = 0.ToString();
 
 		gameSubtitle.text = "";
 		CurrentDisplayPo = 0;
+		showText = true;
 
 		loadjson(filename);
 	}
@@ -42,9 +43,12 @@ public class Hud : MonoBehaviour {
 		walkdis.text = curDistance.ToString();
 
 		//檢查是否播下個文字提示
-		if( curDistance > displayPo[CurrentDisplayPo] ){
+		if( showText && curDistance > displayPo[CurrentDisplayPo] ){
 			subtilteUpdate();
-			CurrentDisplayPo +=1;
+			CurrentDisplayPo = (CurrentDisplayPo + 1);
+			//超過後就不再更新
+			if( CurrentDisplayPo >= displayPo.Length) showText = false;
+
 		}
 	}
 

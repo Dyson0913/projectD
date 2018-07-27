@@ -47,6 +47,8 @@ public class player : MonoBehaviour {
 
 	public InfinityGround infinityGround;
 
+	public InfinityGround bgL1;
+
 	/* 玩家地版射線 */
 	bool isGround{
 		get {
@@ -94,6 +96,7 @@ public class player : MonoBehaviour {
 		hudscript.GetComponent<Hud>().distanceUpdate(this.transform.position.x);
 		//preAppearZone.GetComponent<PreAppearZone>().distanceUpdate(this.transform.position.x);
 		infinityGround.GetComponent<InfinityGround>().distanceUpdate(this.transform.position.x);
+		bgL1.GetComponent<InfinityGround>().distanceUpdate(this.transform.position.x);
 
 		playerRigidbody2d.AddForce(new Vector2(Xacceleratetion,0));
 	}
