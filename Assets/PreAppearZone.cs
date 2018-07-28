@@ -38,18 +38,18 @@ public class PreAppearZone : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {       
-        var colname =  col.gameObject.name.Substring(0,4);
+    // void OnTriggerEnter2D(Collider2D col)
+    // {       
+    //     var colname =  col.gameObject.name.Substring(0,4);
 
-        if( colname == "Item"){
-            var colidx = int.Parse(col.gameObject.name.Substring(5));
-            itemQueue.ToArray()[colidx].SetActive(true);
-            //Debug.Log(colidx);
-        }
+    //     if( colname == "Item"){
+    //         var colidx = int.Parse(col.gameObject.name.Substring(5));
+    //         itemQueue.ToArray()[colidx].SetActive(true);
+    //         //Debug.Log(colidx);
+    //     }
         
        
-    }
+    // }
 
     // Update is called once per frame
     void Update()
